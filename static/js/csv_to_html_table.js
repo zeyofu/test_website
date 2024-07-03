@@ -85,6 +85,10 @@ CsvToHtmlTable = {
                         if (rowIdx <3 || rowIdx > 8) {
                             $tableBodyRow.css("background-color", "#F8FBFD");
                         }
+                        // if random, light blue
+                        if (csvData[rowIdx][0] == "Random Choice") {
+                            $tableBodyRow.css("background-color", "#FEF4E4");
+                        }
 
 
                         $tableBodyRow.append($tableBodyRowTd);
