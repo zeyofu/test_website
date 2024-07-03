@@ -26,28 +26,24 @@ CsvToHtmlTable = {
                 var $tableHead = $("<thead></thead>");
                 var csvHeaderRow = csvData[0];
 
-                var $tableHeadRow1 = $("<tr></tr>");
-                $tableHeadRow1.append($("<th colspan='3' data-dt-order='disable'></th>").text("Metadata"));
-                $tableHeadRow1.append($("<th colspan='5'></th>").text("Reasoning Questions"));
-                $tableHeadRow1.append($("<th colspan='6'></th>").text("Descriptive Questions"));
-                $tableHeadRow1.css("background-color", "#f5f5f5");
-                $tableHead.append($tableHeadRow1);
 
                 var $tableHeadRow2 = $("<tr></tr>");
                 const explanations = ["The name of the model", 
-                "The weight availability of the model", 
-                "Vision and language module size in terms of billion parameters",
-                "Overall score for reasoning questions", 
-                "Score for text-in-chart answers", 
-                "Score for text-in-general answers", 
-                "Score for number-in-chart answers", 
-                "Score for number-in-general answers", 
-                "Overall score for descriptive questions", 
-                "Score for information extraction questions", 
-                "Score for enumeration questions", 
-                "Score for pattern recognition questions", 
-                "Score for counting questions", 
-                "Score for compositionality questions"];
+                "Overall score for all tasks", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task", 
+                "Score for specific task"];
                 for (var headerIdx = 0; headerIdx < csvHeaderRow.length; headerIdx++) {
                     var explanation = explanations[headerIdx];
                     $tableHeadRow2Cell = $("<th class='tooltip'></th>").text(csvHeaderRow[headerIdx]);
@@ -75,23 +71,19 @@ CsvToHtmlTable = {
                             $tableBodyRowTd.css("text-align", "left");
                             // click to see more info
                             var cellValue = csvData[rowIdx][colIdx];
-                            var url = './data/sources/' + cellValue + '.txt';
+                            var url = 'https://github.com/zeyofu/BLINK_Benchmark/tree/main/eval/saved_outputs';
                             $tableBodyRowTd.html('<a href="' + url + '">' + cellValue + '</a>');
                         }
-                        if (colIdx == 2 || colIdx == 7) {
+                        if (colIdx == 1 || colIdx == 0) {
                             $tableBodyRowTd.css("border-right", "1px solid #dbdbdb");
                         }
-                        // if the second column equals to "Proprietary", then set the background color of the row to light red
-                        if (colIdx == 1 && csvData[rowIdx][colIdx] == "Proprietary") {
+                        // if API, then set the background color of the row to light red
+                        if (rowIdx > 2 && rowIdx < 9) {
                             $tableBodyRow.css("background-color", "#FEFAE3");
                         }
-                        // if the second column equals to "Open", then set the background color of the row to light green
-                        if (colIdx == 1 && csvData[rowIdx][colIdx] == "Open") {
+                        // if open source model, then set the background color of the row to light green
+                        if (rowIdx <3 || rowIdx > 8) {
                             $tableBodyRow.css("background-color", "#F8FBFD");
-                        }
-                        // if N/A, light blue
-                        if (csvData[rowIdx][colIdx] == "N/A") {
-                            $tableBodyRow.css("background-color", "#FEF4E4");
                         }
 
 

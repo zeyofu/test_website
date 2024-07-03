@@ -599,13 +599,13 @@
     <script src="./static/js/csv_to_html_table.js"></script>
     <script>
       CsvToHtmlTable.init({
-        csv_path: 'data/val_result.csv', 
+        csv_path: 'static/val_result.csv', 
         element: 'table-container', 
         allow_download: true,
         csv_options: {separator: ',', delimiter: '"'},
         datatables_options: {
           "paging": false, 
-          "order": [[3, 'desc']],
+          "order": [[1, 'desc']],
           "columnDefs": [
           {targets: [0], className: 'dt-left', className: 'dt-head-left'},
           ]
